@@ -9,14 +9,17 @@ def add(x, y):
 
 def multiply(x, y):
     result = 0
-    for _ in range(abs(x)):
-        result = add(result, abs(y))
+    absX = -x if x < 0 else x
+    absY = -y if y < 0 else y
+    for _ in range(absX):
+        result = add(result, absY)
     return result if x > 0 and y > 0 else -result
 
 def power(x, n):
     result = 1
+    absX = -x if x < 0 else x
     for _ in range(n):
-        result = multiply(result, abs(x))
+        result = multiply(result, absX)
     return result if x > 0 else -result
 
 def factorial(x):
@@ -28,7 +31,7 @@ def factorial(x):
 def fibonacci(n):
     fib = [0, 1]
     for _ in range(n-2):
-        fib.append(sum(fib[-2:]))
+        fib.append(add(fib[-2], fib[-1]))
     return fib[-1]
 
 if __name__ == '__main__':
