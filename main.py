@@ -1,39 +1,42 @@
 #!/usr/bin/env python
 """Implements math functions without using operators except for '+' and '-' """
 
-__author__ = "???"
+__author__ = "Big Dave"
 
 
 def add(x, y):
-    """Add two integers. Handles negative values."""
-    # your code here
-    return
-
+    return x+y
 
 def multiply(x, y):
-    """Multiply x with y. Handles negative values of x or y."""
-    # your code here
-    return
-
+    result = 0
+    absX = -x if x < 0 else x
+    absY = -y if y < 0 else y
+    for _ in range(absX):
+        result = add(result, absY)
+    return result if x > 0 and y > 0 else -result
 
 def power(x, n):
-    """Raise x to power n, where n >= 0"""
-    # your code here
-    return
-
+    result = 1
+    absX = -x if x < 0 else x
+    for _ in range(n):
+        result = multiply(result, absX)
+    return result if x > 0 else -result
 
 def factorial(x):
-    """Compute factorial of x, where x > 0"""
-    # your code here
-    return
-
+    result = 1
+    for i in range(x, 1, -1):
+        result = multiply(result, i)
+    return result
 
 def fibonacci(n):
-    """Compute the nth term of fibonacci sequence"""
-    # your code here
-    return
-
+    fib = [0, 1]
+    for _ in range(n-2):
+        fib.append(add(fib[-2], fib[-1]))
+    return fib[-1]
 
 if __name__ == '__main__':
-    # your code to call functions above
-    pass
+    print("add(2,4)", add(2, 4))
+    print("multiply(6, -8)",multiply(6, -8))
+    print("power(2, 8)",power(2, 8))
+    print("factorial(4)",factorial(4))
+    print("fibonacci(8)",fibonacci(8))
